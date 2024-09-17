@@ -20,6 +20,10 @@ jobs:
           submodules: true
           lfs: false
 
+      # List files to verify structure
+      - name: List Files
+        run: ls -al
+
       # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
@@ -28,13 +32,13 @@ jobs:
 
       # Install Dependencies
       - name: Install Dependencies
-        run: |
-          npm install
+        run: npm install
+        working-directory: ./frontend # Adjust this path if necessary
 
       # Run ESLint
       - name: Run ESLint
-        run: |
-          npm run lint
+        run: npm run lint
+        working-directory: ./frontend # Adjust this path if necessary
 
       # Build and Deploy to Azure Static Web Apps
       - name: Build And Deploy
